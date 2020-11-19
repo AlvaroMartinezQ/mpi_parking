@@ -38,8 +38,8 @@
   * [Installation](#installation)
 * [Contributing](#contributing)
 * [Contact](#contact)
-* [Acknowledgements](#Acknowledgements)
 * [Usage](#usage)
+* [Acknowledgements](#Acknowledgements)
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
@@ -74,11 +74,11 @@ sudo apt-get install git
 
 * MPI (Message Passing Interface)
 
-Ejecutor del programa en paralelo(mpirun)
+Executor parallel program(mpirun)
 ```sh
 sudo apt-get install openmpi-bin
 ```
-debugger
+Debugger
 ```sh
 sudo apt-get install xterm
 ```
@@ -129,13 +129,44 @@ Second and last from the main development branch do as follows:
 
 Alvaro Martinez Quiroga - a.martinezq.2017@alumnos.urjc.es
 
-<!-- ACKNOWLEDGEMENTS -->
-
-## Acknowledgements
-TODO
 
 <!-- USAGE EXAMPLES -->
 ## Usage
+In order to run .c files first configure your hostfile.config file
+
+1. Create the file (if you don't have it)
+```sh
+touch hostfile.config
+```
+
+2. Add the number of nodes you want to run the program with, for example
+```sh
+localhost slots=4
+```
+
+3. Compile .c files into .o
+```sh
+mpicc [filename].c -o [filename].o
+```
+
+4. Run the nodes
+```sh
+mpirun --hostfile hostfile.config -np 4 [filename].o
+```
+
+5. If you want to run the debug
+```sh
+mpirun --hostfile hostfile.config -np 4 xterm -e gdb ./[filename].o
+```
+
+In order to run the code in each console, copy the following command
+```sh
+run
+```
+
+<!-- ACKNOWLEDGEMENTS -->
+
+## Acknowledgements
 TODO
 
 <!-- MARKDOWN LINKS & IMAGES -->
