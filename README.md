@@ -159,7 +159,7 @@ mpirun --hostfile hostfile.config -np 4 [filename].o
 mpirun --hostfile hostfile.config -np 4 xterm -e gdb ./[filename].o
 ```
 
-In order to run the code in each console, copy the following command
+In order to run the code in each console, copy the following command in every console
 ```sh
 run
 ```
