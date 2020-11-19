@@ -17,14 +17,14 @@
   <p align="center">
     OPERATIVE SYSTEMS 
     <br />
-    <a href="https://github.com/AlvaroMartinezQ/mini-kernel"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/AlvaroMartinezQ/mpi_parking"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/AlvaroMartinezQ/mini-kernel">View Demo</a>
+    <a href="https://github.com/AlvaroMartinezQ/mpi_parking">View Demo</a>
     ·
-    <a href="https://github.com/AlvaroMartinezQ/mini-kernel/issues">Report Bug</a>
+    <a href="https://github.com/AlvaroMartinezQ/mpi_parking/issues">Report Bug</a>
     ·
-    <a href="https://github.com/AlvaroMartinezQ/mini-kernel/issues">Request Feature</a>
+    <a href="https://github.com/AlvaroMartinezQ/mpi_parking/issues">Request Feature</a>
   </p>
 </p>
 
