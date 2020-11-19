@@ -50,7 +50,7 @@ Parking simulation with MPI, development of operative systems, 2020 - 2021.
 
 * [Linux](https://www.linux.org/)
 * [C language](https://en.wikipedia.org/wiki/C_(programming_language))
-* [MPI] (https://www.open-mpi.org/)
+* [MPI](https://www.open-mpi.org/)
 
 <!-- GETTING STARTED -->
 ## Getting Started
