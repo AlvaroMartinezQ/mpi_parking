@@ -25,8 +25,8 @@
 // Funciones
 void imprime_plazas(int plantas, int plazas_planta, int ** parking);
 int** init_parking(int plantas, int plazas_planta);
-int* asigna_plaza_coche(int *** parking, int id);
-int* asigna_plaza_camion(int *** parking, int id);
+int* asigna_plaza_coche(int *** parking, int plantas, int plazas_planta, int id);
+int* asigna_plaza_camion(int *** parking, int plantas, int plazas_planta, int id);
 
 int main(int argc, char* argv[]){
     // Declaracion de variables antes de iniciar
@@ -59,7 +59,7 @@ int main(int argc, char* argv[]){
         if(recibido[1] == 0){ // Entrada
             if(recibido[2] == 0) { // Coche
                 int asignado_coche[2];
-                asignado_coche = asigna_plaza_coche(&parking, recibido[0]);
+                asignado_coche = asigna_plaza_coche(&parking, plazas, plantas, recibido[0]);
                 if(asignado_coche[0] != -1){ // Se ha asignado
                     printf("Coche %d aparcado en la planta %d, en la plaza %d.\n", recibido[0], asignado_coche[0], asignado_coche[1]);
                     aparcado = 1;
@@ -71,7 +71,7 @@ int main(int argc, char* argv[]){
                 }
             } else if (recibido[2] == 1) { // Camion
                 int asignado_camion[4];
-                asignado_camion = asigna_plaza_camion(&parking, recibido[0]);
+                asignado_camion = asigna_plaza_camion(&parking, plazas, plantas, recibido[0]);
                 if(asignado_camion[0] != -1){ // Se ha asignado
                     printf("Camion %d aparcado en la planta %d, en las plazas %d y %d.\n", recibido[0], asignado_camion[0], asignado_camion[1], asignado_camion[3]);
                     aparcado = 1;
@@ -118,7 +118,7 @@ int** init_parking(int plantas, int plazas_planta){
     return parking;
 }
 
-int* asigna_plaza_coche(int *** parking, int id){
+int* asigna_plaza_coche(int *** parking, int plantas, int plazas_planta, int id){
     int i, j;
     int posicion[2]; // [planta][plaza]
     posicion[0] = -1;
@@ -139,7 +139,7 @@ int* asigna_plaza_coche(int *** parking, int id){
     return posicion; // No se pudo asignar
 }
 
-int* asigna_plaza_camion(int *** parking, int id){
+int* asigna_plaza_camion(int *** parking, int plantas, int plazas_planta, int id){
     int i, j, k;
     int posicion[4]; // [planta][plaza][planta][plaza]
     posicion[0] = -1;
