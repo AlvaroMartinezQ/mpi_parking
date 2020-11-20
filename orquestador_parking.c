@@ -27,6 +27,8 @@ void imprime_plazas(int plantas, int plazas_planta, int ** parking);
 int** init_parking(int plantas, int plazas_planta);
 int* asigna_plaza_coche(int *** parking, int plantas, int plazas_planta, int id);
 int* asigna_plaza_camion(int *** parking, int plantas, int plazas_planta, int id);
+int desasigna_plaza_coche(int *** parking, int plantas, int plazas_planta, int id);
+int desasigna_plaza_camion(int *** parking, int plantas, int plazas_planta, int id);
 
 int main(int argc, char* argv[]){
     // Declaracion de variables antes de iniciar
@@ -40,6 +42,8 @@ int main(int argc, char* argv[]){
     MPI_Status status;
 
     int aparcado;
+
+    imprime_plazas(plantas, plazas, parking);
 
     // Inicializacion MPI
     MPI_Init(&argc, &argv);
@@ -168,4 +172,14 @@ int* asigna_plaza_camion(int *** parking, int plantas, int plazas_planta, int id
         }
     }
     return posicion; // No se pudo asignar
+}
+
+int desasigna_plaza_coche(int *** parking, int plantas, int plazas_planta, int id){
+
+    return -1;
+}
+
+int desasigna_plaza_camion(int *** parking, int plantas, int plazas_planta, int id){
+
+    return -1;
 }
