@@ -28,7 +28,9 @@ int main(int argc, char* argv[]){
     int plazas = atoi(argv[1]);
     int plantas = atoi(argv[2]);
 
-    printf("Plantas: %d, con %d plazas por planta.\n", plantas, plazas);
+    printf("\033[1;35m");
+    printf("\nPlantas: %d, con %d plazas por planta.\n", plantas, plazas);
+    printf("\033[0;0m");
 
     int parking[plantas][plazas];
     int i, j, k;
@@ -38,14 +40,15 @@ int main(int argc, char* argv[]){
             parking[i][j] = 0; // 0 sera libre y cualquier otro numero aparcado [id del proceso que pide plaza]
         }
     }
-
-    printf("Parking inicializado.\n");
-
+    printf("\033[1;31m");
+    printf("\n\nParking inicializado.\n\n");
+    printf("\033[0;0m");
     MPI_Status status;
 
     int aparcado = -1;
 
-    printf("Estado actual del parking: \n");
+    printf("\nEstado actual del parking: \n");
+    printf("\033[1;33m");
     for(i=0; i < plantas; i++){
         printf("-> Planta %d: ", i);
         for(j=0; j < plazas; j++){
@@ -53,6 +56,7 @@ int main(int argc, char* argv[]){
         }
         printf("\n");
     }
+    printf("\033[0;0m");
 
     // Inicializacion MPI
     MPI_Init(&argc, &argv);
@@ -65,9 +69,9 @@ int main(int argc, char* argv[]){
     // Programa principal
     while(1){
         MPI_Recv(recibido, 3, MPI_INT, MPI_ANY_SOURCE, 0, MPI_COMM_WORLD, &status);
-
-        printf("Vehiculo: %d. Entrar=0/Salir=1, operacion: %d. Coche=0/Camion=0, tipo: %d\n", recibido[0], recibido[1], recibido[2]);
-
+        printf("\033[1;36m");
+        printf("\nVehiculo: %d. Entrar=0/Salir=1, operacion: %d. Coche=0/Camion=1, tipo: %d\n\n", recibido[0], recibido[1], recibido[2]);
+        printf("\033[0;0m");
         // Realizar comparaciones necesarias, primero tipo de operacion, despues tipo de vehiculo.
         if(recibido[1] == 0){ // Quiero entrar
             if(recibido[2] == 0) { // Soy un coche
@@ -87,12 +91,16 @@ int main(int argc, char* argv[]){
                 }
                 asignado = 0;
                 if(posicion[0] != -1){ // Se ha asignado
+                    printf("\033[1;32m");
                     printf("Coche %d aparcado en la planta %d, en la plaza %d.\n", recibido[0], posicion[0], posicion[1]);
+                    printf("\033[0;0m");
                     aparcado = 1;
                     MPI_Send(&aparcado, 1, MPI_INT, recibido[0], 0, MPI_COMM_WORLD);
                     aparcado = -1;
                 } else if (posicion[0] == -1){ // No se ha asigando
+                    printf("\033[0;31m");
                     printf("Coche %d no ha podido aparcar.\n", recibido[0]);
+                    printf("\033[0;0m");
                     MPI_Send(&aparcado, 1, MPI_INT, recibido[0], 0, MPI_COMM_WORLD);
                 }
             } else if (recibido[2] == 1) { // Soy un camion
@@ -123,12 +131,16 @@ int main(int argc, char* argv[]){
                 }
                 asignado = 0;
                 if(posicion[0] != -1){ // Se ha asignado
+                    printf("\033[1;32m");
                     printf("Camion %d aparcado en la planta %d, en las plazas %d y %d.\n", recibido[0], posicion[0], posicion[1], posicion[3]);
+                    printf("\033[0;0m");
                     aparcado = 1;
                     MPI_Send(&aparcado, 1, MPI_INT, recibido[0], 0, MPI_COMM_WORLD);
                     aparcado=-1;
                 } else if (posicion[0] == -1){ // No se ha asigando
+                    printf("\033[0;31m");
                     printf("Camion %d no ha podido aparcar.\n", recibido[0]);
+                    printf("\033[0;0m");
                     MPI_Send(&aparcado, 1, MPI_INT, recibido[0], 0, MPI_COMM_WORLD);
                 }
             }
@@ -139,7 +151,9 @@ int main(int argc, char* argv[]){
                     for(j=0; j < plazas; j++){
                         if(parking[i][j] == recibido[0]) {
                             parking[i][j] = 0;
+                            printf("\033[1;35m");
                             printf("Coche %d dejando la plaza %d en la planta %d.\n", recibido[0], j, i);
+                            printf("\033[0;0m");
                             salida = 0; // Encontrado
                         }
                     }
@@ -154,7 +168,9 @@ int main(int argc, char* argv[]){
                         if(parking[i][j] == recibido[0] && parking[i][k] == recibido[0]){
                             parking[i][j] = 0;
                             parking[i][k] = 0;
+                            printf("\033[1;35m");
                             printf("Camion %d dejando las plazas %d y %d en la planta %d.\n", recibido[0], j, k, i);
+                            printf("\033[0;0m");
                             salida = 0; // Encontrado
                         } else {
                             k = 0;
@@ -164,7 +180,8 @@ int main(int argc, char* argv[]){
                 salida = -1; // No encontrado
             }
         }
-        printf("Estado actual del parking: \n");
+        printf("\nEstado actual del parking: \n");
+        printf("\033[1;33m");
         for(i=0; i < plantas; i++){
             printf("-> Planta %d: ", i);
             for(j=0; j < plazas; j++){
@@ -172,6 +189,7 @@ int main(int argc, char* argv[]){
             }
             printf("\n");
         }
+        printf("\033[0;0m");
         sleep(1); // Para evitar mucha repeticion de imprimir el parking
     }
     // Fin
