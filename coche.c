@@ -8,6 +8,7 @@
     Un coche ocupa 1 espacio en el parking
 */
 
-// Variables finales
-int ESPACIO = 1;
+int main(int argc, char* argv[]){
 
+    return 0;
+}
