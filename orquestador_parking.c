@@ -94,9 +94,8 @@ int main(int argc, char* argv[]){
             }
         }
         imprime_plazas(plantas, plazas, &parking);
-        sleep(1);
+        sleep(1); // Para evitar mucha repeticion de imprimir el parking
     }
-
     // Fin
     MPI_Finalize();
 }
