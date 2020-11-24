@@ -2,6 +2,8 @@
 
 // C
 #include <stdio.h>
+#include <unistd.h>
+#include <stdlib.h>
 
 // MPI
 #include <mpi.h>
@@ -19,13 +21,16 @@ int main(int argc, char* argv[]){
     // Declaracion de variables antes de iniciar
     int recibido = -1; // Sera si se ha aparcado o no
     int enviado[3]; // [id hilo][operacion][tipo de vehiculo]
-
+    MPI_Status status;
     // Inicializacion MPI
     MPI_Init(&argc, &argv);
 
     MPI_Barrier(MPI_COMM_WORLD);
 
-    enviado[0] = MPI_Comm_rank(MPI_COMM_WORLD); // Sera el id
+    int id;
+    MPI_Comm_rank(MPI_COMM_WORLD, &id);
+    
+    enviado[0] = id; // Sera el id
     enviado[1] = 0; // 0 = aparcar, 1 = salir. Se deja en 0 ya que primero siempre se aparca
     enviado[2] = 0; // 0 = coche, 1 = camion, siempre coche en este fichero
 
@@ -34,7 +39,7 @@ int main(int argc, char* argv[]){
         printf("Coche %d quiere aparcar...", enviado[0]);
         while(recibido == -1){
             MPI_Send(enviado, 3, MPI_INT, 0, 0, MPI_COMM_WORLD);
-            MPI_Recv(&recibido, 1, MPI_INT, 0, 0, MPI_COMM_WORLD);
+            MPI_Recv(&recibido, 1, MPI_INT, MPI_ANY_SOURCE, 0, MPI_COMM_WORLD, &status);
         }
         printf("Coche %d aparcado", enviado[0]);
         // Cambio de variables
