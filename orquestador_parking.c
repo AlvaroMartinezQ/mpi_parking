@@ -60,8 +60,8 @@ int main(int argc, char* argv[]){
         printf("Vehiculo: %d. Entrar=0/Salir=1, operacion: %d. Coche=0/Camion=0, tipo: %d\n", recibido[0], recibido[1], recibido[2]);
 
         // Realizar comparaciones necesarias, primero tipo de operacion, despues tipo de vehiculo.
-        if(recibido[1] == 0){ // Entrada
-            if(recibido[2] == 0) { // Coche
+        if(recibido[1] == 0){ // Quiero entrar
+            if(recibido[2] == 0) { // Soy un coche
                 int asignado_coche[2];
                 asignado_coche = asigna_plaza_coche(&parking, plazas, plantas, recibido[0]);
                 if(asignado_coche[0] != -1){ // Se ha asignado
@@ -73,7 +73,7 @@ int main(int argc, char* argv[]){
                     printf("Coche %d no ha podido aparcar.\n", recibido[0]);
                     MPI_Send(&aparcado, 1, MPI_INT, recibido[0], 0, MPI_COMM_WORLD);
                 }
-            } else if (recibido[2] == 1) { // Camion
+            } else if (recibido[2] == 1) { // Soy un camion
                 int asignado_camion[4];
                 asignado_camion = asigna_plaza_camion(&parking, plazas, plantas, recibido[0]);
                 if(asignado_camion[0] != -1){ // Se ha asignado
@@ -86,15 +86,14 @@ int main(int argc, char* argv[]){
                     MPI_Send(&aparcado, 1, MPI_INT, recibido[0], 0, MPI_COMM_WORLD);
                 }
             }
-        } else if(recibido[1] == 1) { // Salida
-            if(recibido[2] == 0) { // Coche
+        } else if(recibido[1] == 1) { // Quiero salir
+            if(recibido[2] == 0) { // Soy un coche
                 int salida = desasigna_plaza_coche(&parking, plantas, plazas, recibido[0]); // salida = 0 -> correcto, EOC -> error
-            } else if (recibido[2] == 1) { // Camion
+            } else if (recibido[2] == 1) { // Soy un camion
                 int salida = desasigna_plaza_camion(&parking, plantas, plazas, recibido[0]); // salida = 0 -> correcto, EOC -> error
             }
         }
         imprime_plazas(plantas, plazas, &parking);
-        sleep(1); // Para evitar mucha repeticion de imprimir el parking
     }
     // Fin
     MPI_Finalize();
