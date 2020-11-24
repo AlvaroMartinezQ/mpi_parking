@@ -23,7 +23,7 @@
 
 
 // Funciones
-void imprime_plazas(int plantas, int plazas_planta, int ** parking);
+void imprime_plazas(int plantas, int plazas_planta, int *** parking);
 int** init_parking(int plantas, int plazas_planta);
 int* asigna_plaza_coche(int *** parking, int plantas, int plazas_planta, int id);
 int* asigna_plaza_camion(int *** parking, int plantas, int plazas_planta, int id);
@@ -88,18 +88,20 @@ int main(int argc, char* argv[]){
             }
         } else if(recibido[1] == 1) { // Salida
             if(recibido[2] == 0) { // Coche
-
+                int salida = desasigna_plaza_coche(&parking, plantas, plazas, recibido[0]); // salida = 0 -> correcto, EOC -> error
             } else if (recibido[2] == 1) { // Camion
-
+                int salida = desasigna_plaza_camion(&parking, plantas, plazas, recibido[0]); // salida = 0 -> correcto, EOC -> error
             }
         }
+        imprime_plazas(plantas, plazas, &parking);
+        sleep(1);
     }
 
     // Fin
     MPI_Finalize();
 }
 
-void imprime_plazas(int plantas, int plazas_planta, int ** parking){
+void imprime_plazas(int plantas, int plazas_planta, int *** parking){
     printf("Estado actual del parking: \n");
     int i, j;
     for(i=0; i < plantas; i++){
@@ -116,7 +118,7 @@ int** init_parking(int plantas, int plazas_planta){
     int i, j;
     for(i=0; i < plantas; i++){
         for(j=0; j < plazas_planta; j++){
-            parking[i][j] = 0; // 0 sera libre y 1 ocupado
+            parking[i][j] = 0; // 0 sera libre y cualquier otro numero aparcado [id]
         }
     }
     return parking;
@@ -175,11 +177,32 @@ int* asigna_plaza_camion(int *** parking, int plantas, int plazas_planta, int id
 }
 
 int desasigna_plaza_coche(int *** parking, int plantas, int plazas_planta, int id){
-
-    return -1;
+    for(i=0; i < plantas; i++){
+        for(j=0; j < plazas_planta; j++){
+            if(parking[i][j] == id) {
+                parking[i][j] = 0;
+                printf("Coche %d dejando la plaza %d en la planta %d.\n", id, j, i);
+                return 0; // Encontrado
+            }
+        }
+    }
+    return -1; // No encontrado
 }
 
 int desasigna_plaza_camion(int *** parking, int plantas, int plazas_planta, int id){
-
-    return -1;
+    int k = 0;
+    for(i=0; i < plantas; i++){
+        for(j=0; j < plazas_planta; j++){
+            k = j+1;
+            if(parking[i][j] == id && parking[i][j] == k){
+                parking[i][j] = 0;
+                parking[i][k] = 0;
+                printf("Camion %d dejando las plazas %d y %d en la planta %d.\n", id, j, k, i);
+                return 0; // Encontrado
+            } else {
+                k = 0;
+            }
+        }
+    }
+    return -1; // No encontrado
 }
