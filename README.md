@@ -175,7 +175,8 @@ mpirun --hostfile hostfile.config -np 1 orquestador 10 2 : -np 10 coche : -np 4 
 <!-- ACKNOWLEDGEMENTS -->
 
 ## Acknowledgements
-TODO
+* [University Rey Juan Carlos](https://www.urjc.es/)
+* [Github readme template](https://github.com/othneildrew/Best-README-Template)
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- REPO SHOULD BE PUBLIC TO SHOW THIS FEATURE!
