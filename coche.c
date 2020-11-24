@@ -14,7 +14,7 @@
 
 int main(int argc, char* argv[]){
     // Declaracion de variables antes de iniciar
-    int recibido;
+    int recibido; // Sera si se ha aparcado o no
     int enviado[3]; // [id hilo][operacion][tipo de vehiculo]
     MPI_Status status;
 
