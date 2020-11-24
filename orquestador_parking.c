@@ -2,13 +2,11 @@
 
 /*
     Controlador del parking:
-        - Salida, mayor prioridad
-        - Entrada, menor prioridad
         - Asignador de plaza
     Definicion de variables de:
         - Plantas
         - Plazas por planta
-    Tiempo de espera dentro del parking aleatorio -> (sleep())
+    Tiempo de espera dentro del parking aleatorio -> (sleep()) -> en cada proceso SLAVE
 */
 
 // C
@@ -94,6 +92,7 @@ int main(int argc, char* argv[]){
             }
         }
         imprime_plazas(plantas, plazas, &parking);
+        sleep(1); // Para evitar mucha repeticion de imprimir el parking
     }
     // Fin
     MPI_Finalize();
