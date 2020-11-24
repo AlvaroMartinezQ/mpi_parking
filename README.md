@@ -125,8 +125,9 @@ Second and last from the main development branch do as follows:
 <!-- CONTACT -->
 ## Contact
 
-Alvaro Martinez Quiroga - a.martinezq.2017@alumnos.urjc.es
-
+Alvaro Martinez Quiroga - alvaroo2302@gmail.com
+Patricia Tarazaga Cozas - 
+Raul Heredia Horcajo - 
 
 <!-- USAGE EXAMPLES -->
 ## Usage
