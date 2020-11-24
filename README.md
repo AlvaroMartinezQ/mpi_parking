@@ -15,13 +15,9 @@
   <h3 align="center">PARKING MPI</h3>
 
   <p align="center">
-    OPERATIVE SYSTEMS 
-    <br />
-    <a href="https://github.com/AlvaroMartinezQ/mpi_parking"><strong>Explore the docs »</strong></a>
+    OPERATIVE SYSTEMS
     <br />
     <br />
-    <a href="https://github.com/AlvaroMartinezQ/mpi_parking">View Demo</a>
-    ·
     <a href="https://github.com/AlvaroMartinezQ/mpi_parking/issues">Report Bug</a>
     ·
     <a href="https://github.com/AlvaroMartinezQ/mpi_parking/issues">Request Feature</a>
@@ -125,9 +121,9 @@ Second and last from the main development branch do as follows:
 <!-- CONTACT -->
 ## Contact
 
-Alvaro Martinez Quiroga - alvaroo2302@gmail.com
-Patricia Tarazaga Cozas - 
-Raul Heredia Horcajo - 
+* Alvaro Martinez Quiroga - alvaroo2302@gmail.com
+* Patricia Tarazaga Cozas -
+* Raul Heredia Horcajo -
 
 <!-- USAGE EXAMPLES -->
 ## Usage
