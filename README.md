@@ -33,8 +33,8 @@
   * [Prerequisites](#prerequisites)
   * [Installation](#installation)
 * [Contributing](#contributing)
-* [Contact](#contact)
 * [Usage](#usage)
+* [Contact](#contact)
 * [Acknowledgements](#Acknowledgements)
 
 <!-- ABOUT THE PROJECT -->
@@ -118,12 +118,6 @@ Second and last from the main development branch do as follows:
 <!--
 ## License
 -->
-<!-- CONTACT -->
-## Contact
-
-* Alvaro Martinez Quiroga - alvaroo2302@gmail.com
-* Patricia Tarazaga Cozas -
-* Raul Heredia Horcajo -
 
 <!-- USAGE EXAMPLES -->
 ## Usage
@@ -167,6 +161,13 @@ mpicc [filename].c -o [filename].o
 ```sh
 mpirun --hostfile hostfile.config -np 1 orquestador 10 2 : -np 10 coche : -np 4 camion
 ```
+
+<!-- CONTACT -->
+## Contact
+
+* Alvaro Martinez Quiroga - alvaroo2302@gmail.com
+* Patricia Tarazaga Cozas -
+* Raul Heredia Horcajo -
 
 <!-- ACKNOWLEDGEMENTS -->
 
