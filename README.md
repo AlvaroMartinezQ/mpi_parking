@@ -15,13 +15,9 @@
   <h3 align="center">PARKING MPI</h3>
 
   <p align="center">
-    OPERATIVE SYSTEMS 
-    <br />
-    <a href="https://github.com/AlvaroMartinezQ/mpi_parking"><strong>Explore the docs »</strong></a>
+    OPERATIVE SYSTEMS
     <br />
     <br />
-    <a href="https://github.com/AlvaroMartinezQ/mpi_parking">View Demo</a>
-    ·
     <a href="https://github.com/AlvaroMartinezQ/mpi_parking/issues">Report Bug</a>
     ·
     <a href="https://github.com/AlvaroMartinezQ/mpi_parking/issues">Request Feature</a>
@@ -87,9 +83,7 @@ sudo apt-get install xterm
 
 1. Make yourself a folder where you would like to work
 
-2. Get a nice editor, VS code recommended
-
-3. Clone the repo
+2. Clone the repo
 ```sh
 git clone https://github.com/<github_username>/<repo_name>.git
 ```
@@ -97,7 +91,7 @@ git clone https://github.com/<github_username>/<repo_name>.git
 <!-- CONTRIBUTING -->
 ## Contributing
 
-Any new code should be pushed into a new branch. Please do not push any commits directly into the <strong>master</strong> branch! 
+Any new code should be pushed into a new branch. Please do not push any commits directly into the <strong>master</strong> or <strong>dev</strong> branches! 
 
 1. Create your Feature Branch (`git checkout -b feature-feature_name`)
 2. Commit your Changes (`git commit -m 'feature: <description of the feature>'`)
@@ -127,11 +121,31 @@ Second and last from the main development branch do as follows:
 <!-- CONTACT -->
 ## Contact
 
-Alvaro Martinez Quiroga - a.martinezq.2017@alumnos.urjc.es
-
+* Alvaro Martinez Quiroga - alvaroo2302@gmail.com
+* Patricia Tarazaga Cozas -
+* Raul Heredia Horcajo -
 
 <!-- USAGE EXAMPLES -->
 ## Usage
+The new way: 
+
+1. Compile the files with the Makefile file running the following command
+```sh
+make
+```
+
+2. Run the program using again the Makefile
+```sh
+make run
+```
+
+If you want to remove the compiled source, run the following command
+```sh
+make clean
+```
+
+The old way:
+
 In order to run .c files first configure your hostfile.config file
 
 1. Create the file (if you don't have it)
@@ -141,7 +155,7 @@ touch hostfile.config
 
 2. Add the number of nodes you want to run the program with, for example
 ```sh
-localhost slots=4
+localhost slots=15
 ```
 
 3. Compile .c files into .o
@@ -149,25 +163,16 @@ localhost slots=4
 mpicc [filename].c -o [filename].o
 ```
 
-4. Run the nodes
+4. Run the nodes, numbers in the following line are just an example and can be changed
 ```sh
-mpirun --hostfile hostfile.config -np 4 [filename].o
-```
-
-5. If you want to run the debug
-```sh
-mpirun --hostfile hostfile.config -np 4 xterm -e gdb ./[filename].o
-```
-
-In order to run the code in each console, copy the following command in every console
-```sh
-run
+mpirun --hostfile hostfile.config -np 1 orquestador 10 2 : -np 10 coche : -np 4 camion
 ```
 
 <!-- ACKNOWLEDGEMENTS -->
 
 ## Acknowledgements
-TODO
+* [University Rey Juan Carlos](https://www.urjc.es/)
+* [Github readme template](https://github.com/othneildrew/Best-README-Template)
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- REPO SHOULD BE PUBLIC TO SHOW THIS FEATURE!
